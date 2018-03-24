@@ -1,1 +1,291 @@
 /* You can add global styles to this file, and also import other style files */
+
+.loader-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#progress-loader {
+  width: 60px;
+  height: 60px;
+  padding-top: 200px;
+}
+
+html {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  font-family: Roboto, 'sans-serif';
+}
+
+.spinner_small {
+  height: 24px !important;
+  width: 24px !important;
+}
+
+.spinner_small > svg {
+  width: 24px !important;
+  height: 24px !important;
+}
+
+.spinner_medium {
+  height: 48px !important;
+  width: 48px !important;
+}
+
+.spinner_medium > svg {
+  width: 48px !important;
+  height: 48px !important;
+}
+
+.spinner_large {
+  height: 64px !important;
+  width: 64px !important;
+}
+
+.spinner_large > svg {
+  width: 64px !important;
+  height: 64px !important;
+}
+
+.spinner_tiny {
+  height: 16px !important;
+  width: 16px !important;
+}
+
+.spinner_tiny > svg {
+  width: 16px !important;
+  height: 16px !important;
+}
+
+.heart {
+  height: 100vh;
+  width: 100vw;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader {
+  color: #FF8E8E;
+  font-family: Consolas, Menlo, Monaco, monospace;
+  font-weight: bold;
+  font-size: 60px;
+  opacity: 1;
+}
+
+.loader span {
+  display: inline-block;
+  -webkit-animation: pulse 0.5s alternate infinite ease-in-out;
+  animation: pulse 0.5s alternate infinite ease-in-out;
+}
+
+.loader span:nth-child(odd) {
+  -webkit-animation-delay: 0.5s;
+  animation-delay: 0.5s;
+}
+
+@-webkit-keyframes pulse {
+  to {
+    -webkit-transform: scale(0.8);
+    transform: scale(0.8);
+    opacity: 0.7;
+  }
+}
+
+@keyframes pulse {
+  to {
+    -webkit-transform: scale(0.8);
+    transform: scale(0.8);
+    opacity: 0.7;
+  }
+}
+
+.mat-dialog-container {
+  padding: 0 !important;
+  background-color: #f8f8f8 !important;
+  overflow-y: hidden !important;
+}
+
+.cardShadow:hover {
+  box-shadow: 0 46px 113px -5px rgba(0, 0, 0, .5);
+}
+
+app-module-curriculum-tab mat-tab-group mat-tab-header div.mat-tab-labels {
+  background-color: white;
+  justify-content: center;
+}
+
+app-module-curriculum-tab mat-tab-group mat-tab-header div.mat-tab-labels div.mat-tab-label-active {
+  background-color: white;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  height: fit-content;
+  width: 100%;
+}
+
+.col {
+  display: flex;
+  width: fit-content;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.res_col_half {
+  width: 50%;
+}
+
+.row > .col {
+  padding: 0 8px;
+}
+
+.col > .row {
+  padding: 8px 0;
+}
+
+.col > .row:first-child {
+  padding-top: 0;
+}
+
+.col > .row:last-child {
+  padding-bottom: 0;
+}
+
+.l30m50s100 {
+  width: 30%;
+}
+
+.l70m50s100 {
+  width: 70%;
+}
+
+.stats_card {
+  width: min-content;
+  min-width: 250px;
+  min-height: 100px;
+  flex: 1;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  margin: 16px;
+  padding: 16px;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.12);
+  background-color: white;
+  transition: box-shadow 0.4s;
+  -webkit-font-smoothing: antialiased;
+
+}
+
+.stats_card_heading {
+  color: black;
+  font-size: 16px;
+  font-family: Roboto, 'sans-serif';
+  font-weight: 500;
+  margin-bottom: 16px;
+
+}
+
+.np {
+!important padding: 0;
+}
+
+.nm {
+!important margin: 0;
+}
+
+.stats_card:hover {
+
+}
+
+.stats_card_content {
+
+}
+
+.stats_loader_container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.stats_error_container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 300;
+  font-family: Roboto, 'sans-serif';
+}
+
+.stats_row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.stats_col {
+  margin-top: 8px;
+  align-items: center;
+  justify-content: center;
+}
+
+.stats_key {
+  font-size: 12px;
+  font-weight: 300;
+  margin-top: 8px;
+  font-family: Roboto, 'sans-serif';
+}
+
+.stats_value {
+  font-size: 32px;
+  font-weight: 500;
+  font-family: Roboto, 'sans-serif';
+}
+
+@media (max-width: 720px) {
+
+  .l30m50s100 {
+    width: 50%;
+  }
+
+  .l70m50s100 {
+    width: 50%;
+  }
+
+  .row > .col {
+    padding: 0 8px;
+  }
+
+  .res_col_half {
+    width: 100%;
+  }
+
+}
+
+@media (max-width: 480px) {
+
+  .l30m50s100 {
+    width: 100%;
+  }
+
+  .l70m50s100 {
+    width: 100%;
+  }
+
+}
