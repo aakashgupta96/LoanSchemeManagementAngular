@@ -24,7 +24,7 @@ import {NotificationContainerComponent} from "./components/notification-containe
   ],
   imports: [
     BrowserModule,
-    // LoanAppMaterialModule,
+    LoanAppMaterialModule,
     BrowserAnimationsModule,
     HttpModule,
     FormsModule,
