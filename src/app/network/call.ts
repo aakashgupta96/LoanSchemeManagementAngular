@@ -13,7 +13,7 @@ import {NotificationBuilder} from "../misc/notification/notification.builder";
 
 export class Call<T> {
 
-  static readonly INTERNAL_SERVER_ERROR: string = "Internal server error. Please contact Coding Ninjas Team.";
+  static readonly INTERNAL_SERVER_ERROR: string = "Internal server error.";
 
   private requestMethod: RequestMethod;
   private headers: Headers;
@@ -58,51 +58,58 @@ export class Call<T> {
     }
     switch (this.requestMethod) {
       case RequestMethod.Get:
-        return this.http.get(this.url, options).toPromise().then(res => {
-          return this.extractData(this.type, res)
-        })
+        return this.http.get(this.url, options).toPromise()
+          .then(res => {
+            return this.extractData(this.type, res)
+          })
           .catch(error => {
             return this.handleError(error)
           });
       case RequestMethod.Post:
-        return this.http.post(this.url, this.body, options).toPromise().then(res => {
-          return this.extractData(this.type, res)
-        })
+        return this.http.post(this.url, this.body, options).toPromise()
+          .then(res => {
+            return this.extractData(this.type, res)
+          })
           .catch(error => {
             return this.handleError(error)
           });
       case RequestMethod.Delete:
-        return this.http.delete(this.url, options).toPromise().then(res => {
-          return this.extractData(this.type, res)
-        })
+        return this.http.delete(this.url, options).toPromise()
+          .then(res => {
+            return this.extractData(this.type, res)
+          })
           .catch(error => {
             return this.handleError(error)
           });
       case RequestMethod.Put:
-        return this.http.put(this.url, this.body, options).toPromise().then(res => {
-          return this.extractData(this.type, res)
-        })
+        return this.http.put(this.url, this.body, options).toPromise()
+          .then(res => {
+            return this.extractData(this.type, res)
+          })
           .catch(error => {
             return this.handleError(error)
           });
       case RequestMethod.Patch:
-        return this.http.patch(this.url, this.body, options).toPromise().then(res => {
-          return this.extractData(this.type, res)
-        })
+        return this.http.patch(this.url, this.body, options).toPromise()
+          .then(res => {
+            return this.extractData(this.type, res)
+          })
           .catch(error => {
             return this.handleError(error)
           });
       case RequestMethod.Head:
-        return this.http.head(this.url, options).toPromise().then(res => {
-          return this.extractData(this.type, res)
-        })
+        return this.http.head(this.url, options).toPromise()
+          .then(res => {
+            return this.extractData(this.type, res)
+          })
           .catch(error => {
             return this.handleError(error)
           });
       case RequestMethod.Options:
-        return this.http.options(this.url, options).toPromise().then(res => {
-          return this.extractData(this.type, res)
-        })
+        return this.http.options(this.url, options).toPromise()
+          .then(res => {
+            return this.extractData(this.type, res)
+          })
           .catch(error => {
             return this.handleError(error)
           });
@@ -137,9 +144,7 @@ export class Call<T> {
 
       }
       else if (error.code == 805) {
-
         this.networkService.router.navigate(['/unauthorized'], {replaceUrl: true});
-
       }
       return Promise.reject(error);
     }

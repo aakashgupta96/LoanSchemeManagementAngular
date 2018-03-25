@@ -52,19 +52,19 @@ export class NotificationBuilder {
     } else {
       switch (this.notiType) {
         case LoanAppNotificationType.SUCCESS: {
-          return 'https://ninjasfiles.s3.amazonaws.com/0000000000000472.png';
+          return '../assets/icons/success.png';
         }
         case LoanAppNotificationType.ERROR: {
-          return 'https://ninjasfiles.s3.amazonaws.com/0000000000000471.png';
+          return '../assets/icons/error.png';
         }
         case LoanAppNotificationType.INFORMATION: {
-          return 'https://ninjasfiles.s3.amazonaws.com/0000000000000470.png';
+          return '../assets/icons/info.png';
         }
         case LoanAppNotificationType.ALERT: {
-          return 'https://ninjasfiles.s3.amazonaws.com/0000000000000469.png';
+          return '../assets/icons/alert.png';
         }
         default: {
-          return 'https://ninjasfiles.s3.amazonaws.com/0000000000000468.png';
+          return '../assets/icons/info.png';
         }
       }
     }

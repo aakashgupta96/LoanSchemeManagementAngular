@@ -5,6 +5,7 @@ import {KEYS} from '../constants/constant.constant';
 import {LoginResponse} from '../network/responses/login.response';
 import {Observable} from 'rxjs/Observable';
 import {StorageService} from "./storage.service";
+import {LoanAppErrorHandler} from "../misc/loan-app.error-handler";
 
 @Injectable()
 export class AuthenticationService {
@@ -15,7 +16,7 @@ export class AuthenticationService {
   loginStatusSubject = new BehaviorSubject<boolean>(this.isLoggedIn());
   loginStatusStream: Observable<boolean> = this.loginStatusSubject.asObservable();
 
-  constructor(private storage: StorageService) {
+  constructor(private storage: StorageService, private loanAppErrorHandler: LoanAppErrorHandler) {
   }
 
   getUser(): User {
@@ -36,8 +37,9 @@ export class AuthenticationService {
     if(apiResponse && apiResponse.user_access_token){
       this.storage.storeInLocal(KEYS.ACCESS_TOKEN, apiResponse.user_access_token);
       this.loginStatusSubject.next(true);
+      this.storeUser(apiResponse.user);
     }
-    this.storeUser(apiResponse.user);
+    this.loanAppErrorHandler.setUser(apiResponse.user);
   }
 
   storeUser(user) {
@@ -51,6 +53,7 @@ export class AuthenticationService {
     this.storage.removeFromLocal(KEYS.USER);
     this.storage.removeFromLocal(KEYS.DOUBT_SESSION_UUID);
     this.loginStatusSubject.next(false);
+    this.loanAppErrorHandler.removeUser();
   }
 
 

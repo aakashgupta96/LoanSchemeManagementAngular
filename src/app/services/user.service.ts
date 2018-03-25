@@ -1,11 +1,10 @@
 import {Injectable} from '@angular/core';
 import {User} from '../models/user.model';
-import {KEYS, URLS} from '../constants/constant.constant';
+import {URLS} from '../constants/constant.constant';
 import {RequestMethod, URLSearchParams} from '@angular/http';
 import {LoginResponse} from '../network/responses/login.response';
 import {CallBuilder} from '../network/call.builder';
-import {BehaviorSubject, Observable} from 'rxjs';
-import {Router} from '@angular/router';
+import {Observable} from 'rxjs';
 import {NetworkService} from './network.service';
 import {AuthenticationService} from './authentication.service';
 
@@ -14,15 +13,8 @@ export class UserService {
 
   loginStatusStream: Observable<boolean>;
 
-  pendingNotificationsSubject = new BehaviorSubject<number>(0);
-  pendingNotificationsStream: Observable<number> = this.pendingNotificationsSubject.asObservable();
-
-  userSocket;
-  employeeSocket;
-
   constructor(private authenticationService: AuthenticationService,
-              private networkService: NetworkService,
-              private router: Router) {
+              private networkService: NetworkService) {
     this.loginStatusStream = this.authenticationService.loginStatusSubject.asObservable();
   }
 
@@ -34,25 +26,21 @@ export class UserService {
     return this.authenticationService.isLoggedIn();
   }
 
-  login(): void {
-    //return Promise<LoginResponse>
+  login(email: string, password: string): Promise<LoginResponse> {
+    let params = new URLSearchParams();
+    params.set("email", email);
+    params.set("password", password);
+    return new CallBuilder<LoginResponse>(this.networkService, RequestMethod.Post, URLS.LOGIN).parseTo(LoginResponse).params(params).build().execute().then((apiResponse) => {
+      console.log('here')
+      this.authenticationService.setLoginResponse(apiResponse);
+      return apiResponse;
+    });
   }
 
 
   logout(): void {
-    this.authenticationService.logout();
-  }
-
-  logoutFromServer() {
-    return new CallBuilder<any>(this.networkService, RequestMethod.Get, URLS.LOGOUT).buildAuthenticatedCall().execute();
-  }
-
-  logoutWithoutRedirect() {
-    this.logoutFromServer();
-    this.authenticationService.logout();
-  }
-
-  storeUser(user) {
-    this.authenticationService.storeUser(user);
+    new CallBuilder<any>(this.networkService, RequestMethod.Get, URLS.LOGOUT).buildAuthenticatedCall().execute().then(res => {
+      this.authenticationService.logout();
+    });
   }
 }
