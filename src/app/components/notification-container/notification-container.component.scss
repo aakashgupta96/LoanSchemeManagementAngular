@@ -1,0 +1,26 @@
+#notification-container {
+  position: fixed;
+  width: 260px;
+  z-index: 9999;
+}
+
+.top {
+  top: 62px;
+}
+
+.bottom {
+  bottom: 150px;
+}
+
+.left {
+  left: 100px;
+}
+
+.right {
+  right: 40px;
+}
+
+.center {
+  left: 50%;
+  transform: translate(0%, -50%);
+}

@@ -13,14 +13,18 @@ import {UserService} from "./services/user.service";
 import {HttpModule} from "@angular/http";
 import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
+import {NotificationComponent} from "./components/notification-container/notification/notification.component";
+import {NotificationContainerComponent} from "./components/notification-container/notification-container.component";
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NotificationContainerComponent,
+    NotificationComponent,
   ],
   imports: [
     BrowserModule,
-    LoanAppMaterialModule,
+    // LoanAppMaterialModule,
     BrowserAnimationsModule,
     HttpModule,
     FormsModule,

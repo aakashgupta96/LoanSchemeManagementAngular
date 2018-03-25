@@ -1,0 +1,21 @@
+<div class="animated fadeInRight">
+  <div id="notification" *ngIf="display" class="{{notificationTypes[notification.type]}}">
+    <div class="notification-box">
+      <div class="notification-content">
+        <div class="notification-icon">
+          <img src="{{notification.icon_link}}">
+        </div>
+        <div class="notification-text">
+          <div class="notification-title">
+            <p>{{notification.title}}</p>
+          </div>
+          <div *ngIf="notification.message" class="notification-message">
+            <p>{{notification.message}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="notification-close-button" *ngIf="notification.showClose" (click)="close()"><i
+        class="fa fa-close"></i></div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,4 @@
+<div id="notification-container" class="{{verticalPosition}} {{horizontalPosition}}">
+  <app-notification *ngFor="let notification of notifications" [notification]="notification"
+                    (notificationExpired)="showPendingNotification()"></app-notification>
+</div>
