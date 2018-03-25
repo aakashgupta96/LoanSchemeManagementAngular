@@ -20,6 +20,8 @@ import {LoginComponent} from "./components/login/login.component";
 import {InternalServerErrorComponent} from "./components/internal-server-error/internal-server-error.component";
 import {NotFoundComponent} from "./components/not-found/not-found.component";
 import {UnauthorizedComponent} from "./components/unauthorized/unauthorized.component";
+import {LoaderComponent} from "./components/loader/loader.component";
+import {NoConnectionComponent} from "./components/no-connection/no-connection.component";
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import {UnauthorizedComponent} from "./components/unauthorized/unauthorized.comp
     LoginComponent,
     InternalServerErrorComponent,
     NotFoundComponent,
-    UnauthorizedComponent
+    UnauthorizedComponent,
+    LoaderComponent,
+    NoConnectionComponent
   ],
   imports: [
     BrowserModule,

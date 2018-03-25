@@ -19,26 +19,46 @@ export class AppComponent implements OnInit{
   }
 
   ngOnInit() {
-    let newNotification = new NotificationBuilder()
-      .title('Test')
-      .message('Some test')
-      .showClose(true)
-      .timeout(5000)
-      .type(LoanAppNotificationType.SUCCESS)
-      .build();
-
-    this.notificationService.showNotification(newNotification)
     this.userService.loginStatusStream.subscribe(loginStatus => {
       this.loggedIn = loginStatus;
     });
   }
 
   login() {
-    this.userService.login(this.email, this.password);
+    this.userService.login(this.email, this.password).then(res => {
+      let newNotification = new NotificationBuilder()
+        .title('Logged In')
+        .message('Welcome to Loan App!')
+        .showClose(true)
+        .timeout(5000)
+        .type(LoanAppNotificationType.SUCCESS)
+        .build();
+
+      this.notificationService.showNotification(newNotification);
+      this.email = null;
+      this.password = null;
+    });
   }
 
+
+  //need to fix the logout method
   logout() {
-    this.userService.logout();
+    this.log();
+    this.log();
+  }
+
+  log() {
+    this.userService.logout().then(res => {
+      let newNotification = new NotificationBuilder()
+        .title('Logged Out')
+        .message('You are successfully logged out!')
+        .showClose(true)
+        .timeout(5000)
+        .type(LoanAppNotificationType.SUCCESS)
+        .build();
+
+      this.notificationService.showNotification(newNotification);
+    });
   }
 
 }

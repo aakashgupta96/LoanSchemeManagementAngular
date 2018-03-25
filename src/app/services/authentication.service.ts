@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {User} from '../models/user.model';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {KEYS} from '../constants/constant.constant';
@@ -24,17 +24,17 @@ export class AuthenticationService {
   }
 
   isLoggedIn(): boolean {
-    if(this.accessToken == null){
+    if (this.accessToken == null) {
       this.accessToken = this.storage.fetchFromLocal<string>(KEYS.ACCESS_TOKEN);
     }
-    if(this.currentUser == null){
+    if (this.currentUser == null) {
       this.currentUser = this.storage.fetchFromLocal<User>(KEYS.USER);
     }
     return this.accessToken != null && this.currentUser != null;
   }
 
-  setLoginResponse(apiResponse: LoginResponse){
-    if(apiResponse && apiResponse.user_access_token){
+  setLoginResponse(apiResponse: LoginResponse) {
+    if (apiResponse && apiResponse.user_access_token) {
       this.storage.storeInLocal(KEYS.ACCESS_TOKEN, apiResponse.user_access_token);
       this.loginStatusSubject.next(true);
       this.storeUser(apiResponse.user);
@@ -46,7 +46,7 @@ export class AuthenticationService {
     this.storage.storeInLocal(KEYS.USER, user);
   }
 
-  logout(){
+  logout() {
     this.accessToken = null;
     this.currentUser = null;
     this.storage.removeFromLocal(KEYS.ACCESS_TOKEN);

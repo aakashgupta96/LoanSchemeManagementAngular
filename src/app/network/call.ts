@@ -48,7 +48,6 @@ export class Call<T> {
   }
 
   public execute(): Promise<any> {
-
     let options = new RequestOptions();
     options.body = this.body;
     options.headers = this.headers;
@@ -122,7 +121,6 @@ export class Call<T> {
   }
 
   private handleError(error: Response | any) {
-
     if (this.showLoader) {
       this.loaderService.hideLoader();
     }
@@ -141,36 +139,35 @@ export class Call<T> {
             logged_out: true
           }
         });
-
       }
+
       else if (error.code == 805) {
         this.networkService.router.navigate(['/unauthorized'], {replaceUrl: true});
       }
       return Promise.reject(error);
     }
 
-    let codezenError: LoanAppError = LoanAppError.INTERNAL_SERVER_ERROR;
+    let loanAppError: LoanAppError = LoanAppError.INTERNAL_SERVER_ERROR;
     if (error instanceof Response) {
       if (error.status == 404) {
         this.networkService.router.navigate(['/fourofour'], {replaceUrl: true});
-        codezenError = LoanAppError.NOT_FOUND;
+        loanAppError = LoanAppError.NOT_FOUND;
       }
       else if (error.status == 422 || error.status == 0) {
         this.somethingWentWrong(error);
       }
       else if (error.status == 401) {
         this.networkService.router.navigate(['/unauthorized'], {replaceUrl: true});
-        codezenError = LoanAppError.UNAUTHORIZED;
+        loanAppError = LoanAppError.UNAUTHORIZED;
       }
       else {
-        codezenError = new LoanAppError(error.status, error.statusText);
+        loanAppError = new LoanAppError(error.status, error.statusText);
       }
     }
-    if (codezenError.code == 500) {
+    if (loanAppError.code == 500) {
       this.somethingWentWrong(error);
-
     }
-    return Promise.reject(codezenError);
+    return Promise.reject(loanAppError);
   }
 
   somethingWentWrong(error: Response | any) {

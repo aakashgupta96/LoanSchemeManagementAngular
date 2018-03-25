@@ -7,6 +7,7 @@ import {CallBuilder} from '../network/call.builder';
 import {Observable} from 'rxjs';
 import {NetworkService} from './network.service';
 import {AuthenticationService} from './authentication.service';
+import {NotificationService} from "./notificaton.service";
 
 @Injectable()
 export class UserService {
@@ -14,7 +15,8 @@ export class UserService {
   loginStatusStream: Observable<boolean>;
 
   constructor(private authenticationService: AuthenticationService,
-              private networkService: NetworkService) {
+              private networkService: NetworkService,
+              private notificationService: NotificationService) {
     this.loginStatusStream = this.authenticationService.loginStatusSubject.asObservable();
   }
 
@@ -30,16 +32,15 @@ export class UserService {
     let params = new URLSearchParams();
     params.set("email", email);
     params.set("password", password);
-    return new CallBuilder<LoginResponse>(this.networkService, RequestMethod.Post, URLS.LOGIN).parseTo(LoginResponse).params(params).build().execute().then((apiResponse) => {
-      console.log('here')
+    return new CallBuilder<LoginResponse>(this.networkService, RequestMethod.Post, URLS.LOGIN).params(params).build().execute().then((apiResponse) => {
       this.authenticationService.setLoginResponse(apiResponse);
       return apiResponse;
     });
   }
 
 
-  logout(): void {
-    new CallBuilder<any>(this.networkService, RequestMethod.Get, URLS.LOGOUT).buildAuthenticatedCall().execute().then(res => {
+  logout(): Promise<any> {
+    return new CallBuilder<any>(this.networkService, RequestMethod.Post, URLS.LOGOUT).buildAuthenticatedCall().execute().then(res => {
       this.authenticationService.logout();
     });
   }
