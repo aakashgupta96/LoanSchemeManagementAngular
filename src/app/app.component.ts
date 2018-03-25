@@ -40,7 +40,6 @@ export class AppComponent implements OnInit{
     });
   }
 
-
   //need to fix the logout method
   logout() {
     this.log();
