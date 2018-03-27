@@ -5,22 +5,29 @@ import {LoginComponent} from "./components/login/login.component";
 import {NotFoundComponent} from "./components/not-found/not-found.component";
 import {InternalServerErrorComponent} from "./components/internal-server-error/internal-server-error.component";
 import {UnauthorizedComponent} from "./components/unauthorized/unauthorized.component";
+import {LaunchComponent} from "./components/launch/launch.component";
+import {HomeComponent} from "./components/home/home.component";
 
 const routes: Routes = [
   {
-    path: '',
-    redirectTo: 'app',
-    pathMatch: 'full'
-  },
-  {
     path: 'app',
-    component: AppComponent,
+    component: LaunchComponent,
     children: [
+      {
+        path: 'home',
+        component: HomeComponent,
+        pathMatch: 'full'
+      },
       {
         path: 'login',
         component: LoginComponent
       },
     ]
+  },
+  {
+    path: '',
+    redirectTo: 'app/home',
+    pathMatch: 'full'
   },
   {path: 'fourofour', component: NotFoundComponent},
   {path: '500', component: InternalServerErrorComponent},

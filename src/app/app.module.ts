@@ -22,6 +22,9 @@ import {NotFoundComponent} from "./components/not-found/not-found.component";
 import {UnauthorizedComponent} from "./components/unauthorized/unauthorized.component";
 import {LoaderComponent} from "./components/loader/loader.component";
 import {NoConnectionComponent} from "./components/no-connection/no-connection.component";
+import {HomeComponent} from "./components/home/home.component";
+import {LaunchComponent} from "./components/launch/launch.component";
+import {HeaderComponent} from "./components/header/header.component";
 
 @NgModule({
   declarations: [
@@ -33,7 +36,10 @@ import {NoConnectionComponent} from "./components/no-connection/no-connection.co
     NotFoundComponent,
     UnauthorizedComponent,
     LoaderComponent,
-    NoConnectionComponent
+    NoConnectionComponent,
+    HomeComponent,
+    LaunchComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

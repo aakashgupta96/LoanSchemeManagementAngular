@@ -1,63 +1,26 @@
 import {Component, OnInit} from '@angular/core';
-import {NotificationBuilder} from "./misc/notification/notification.builder";
-import {LoanAppNotificationType} from "./models/loan-app-notification.model";
-import {NotificationService} from "./services/notificaton.service";
-import {UserService} from "./services/user.service";
+import {Observable} from "rxjs/Observable";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
 
-  email: string;
-  password: string;
-  loggedIn: boolean;
+  isConnected: Observable<boolean>;
 
-  constructor(private notificationService: NotificationService, private userService: UserService) {
+  constructor(public router: Router) {
+    this.router.events.subscribe(event => {
+      this.isConnected = Observable.merge(
+        Observable.of(navigator.onLine),
+        Observable.fromEvent(window, 'online').map(() => true),
+        Observable.fromEvent(window, 'offline').map(() => false));
+    });
   }
 
   ngOnInit() {
-    this.userService.loginStatusStream.subscribe(loginStatus => {
-      this.loggedIn = loginStatus;
-    });
-  }
-
-  login() {
-    this.userService.login(this.email, this.password).then(res => {
-      let newNotification = new NotificationBuilder()
-        .title('Logged In')
-        .message('Welcome to Loan App!')
-        .showClose(true)
-        .timeout(5000)
-        .type(LoanAppNotificationType.SUCCESS)
-        .build();
-
-      this.notificationService.showNotification(newNotification);
-      this.email = null;
-      this.password = null;
-    });
-  }
-
-  //need to fix the logout method
-  logout() {
-    this.log();
-    this.log();
-  }
-
-  log() {
-    this.userService.logout().then(res => {
-      let newNotification = new NotificationBuilder()
-        .title('Logged Out')
-        .message('You are successfully logged out!')
-        .showClose(true)
-        .timeout(5000)
-        .type(LoanAppNotificationType.SUCCESS)
-        .build();
-
-      this.notificationService.showNotification(newNotification);
-    });
   }
 
 }

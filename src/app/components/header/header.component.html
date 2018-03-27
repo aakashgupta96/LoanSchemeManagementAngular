@@ -1,0 +1,15 @@
+header
+<div *ngIf="!loggedIn">
+  <mat-input-container dividerColor="accent">
+    <input matInput type="text" placeholder="Email" name="email" [(ngModel)]="email">
+  </mat-input-container>
+
+  <mat-input-container dividerColor="accent">
+    <input matInput type="text" placeholder="Password" name="password" [(ngModel)]="password">
+  </mat-input-container>
+
+  <button (click)="login()">Login</button>
+</div>
+
+<button (click)="logout()" *ngIf="loggedIn">Logout</button>
+/header
