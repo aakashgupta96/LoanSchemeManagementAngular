@@ -25,19 +25,41 @@ export class HeaderComponent implements OnInit {
   }
 
   login() {
-    this.userService.login(this.email, this.password).then(res => {
+    if (this.email && this.isEmailValid(this.email) && this.password && this.password.length > 0) {
+      this.userService.login(this.email, this.password).then(res => {
+        let newNotification = new NotificationBuilder()
+          .title('Logged In')
+          .message('Welcome to Loan App!')
+          .showClose(true)
+          .timeout(5000)
+          .type(LoanAppNotificationType.SUCCESS)
+          .build();
+
+        this.notificationService.showNotification(newNotification);
+        this.email = null;
+        this.password = null;
+      });
+    } else if (!this.email || !this.isEmailValid(this.email)) {
       let newNotification = new NotificationBuilder()
-        .title('Logged In')
-        .message('Welcome to Loan App!')
+        .title('Invalid Email')
+        .message('Please enter a valid email!')
         .showClose(true)
         .timeout(5000)
-        .type(LoanAppNotificationType.SUCCESS)
+        .type(LoanAppNotificationType.ERROR)
         .build();
 
       this.notificationService.showNotification(newNotification);
-      this.email = null;
-      this.password = null;
-    });
+    } else if (!this.password || this.password.length == 0) {
+      let newNotification = new NotificationBuilder()
+        .title('Invalid Password')
+        .message('Please enter a valid password!')
+        .showClose(true)
+        .timeout(5000)
+        .type(LoanAppNotificationType.ERROR)
+        .build();
+
+      this.notificationService.showNotification(newNotification);
+    }
   }
 
   logout() {
@@ -52,5 +74,10 @@ export class HeaderComponent implements OnInit {
 
       this.notificationService.showNotification(newNotification);
     });
+  }
+
+  isEmailValid(email) {
+    let re = /\S+@\S+\.\S+/;
+    return re.test(email);
   }
 }
