@@ -42,6 +42,7 @@ export class UserService {
   logout(): Promise<any> {
     return new CallBuilder<any>(this.networkService, RequestMethod.Post, URLS.LOGOUT).buildAuthenticatedCall().execute().then(res => {
       this.authenticationService.logout();
+      return res;
     });
   }
 }

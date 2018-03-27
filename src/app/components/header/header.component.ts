@@ -40,13 +40,7 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  //need to fix the logout method
   logout() {
-    this.log();
-    this.log();
-  }
-
-  log() {
     this.userService.logout().then(res => {
       let newNotification = new NotificationBuilder()
         .title('Logged Out')
