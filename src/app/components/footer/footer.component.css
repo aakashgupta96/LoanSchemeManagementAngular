@@ -45,11 +45,12 @@ a {
   background: #262889;
   width: 100%;
   padding: 1%;
+  box-sizing: border-box;
 }
 
 ul#footer-menu li {
   display: inline;
-  padding: 0px 10px 5px 5px;
+  padding: 0 10px 5px 5px;
 
 }
 

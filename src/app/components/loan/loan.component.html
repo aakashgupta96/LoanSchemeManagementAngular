@@ -1,4 +1,5 @@
 <div id="loan">
+<<<<<<< HEAD
 		<ul id="nav">
 			<li (click)='setString("schemes")' [class.active]='matches("schemes")'>Schemes</li>
 			<li (click)='setString("dept")' [class.active]='matches("dept")'>Departments</li>
@@ -88,5 +89,55 @@
       <h3>MINISTRY OF PETROL</h3>
       <p>We provide funding</p>
     </div>
+=======
+  <ul id="nav">
+    <li (click)='setString("schemes")'>Schemes</li>
+    <li (click)='setString("dept")'>Departments</li>
+    <li>Ministries</li>
+  </ul>
+
+  <div id="content" *ngIf='matches("schemes")'>
+    <div id="drop">
+      <select>
+        <option>Ministry</option>
+        <option>Ministry of commerce</option>
+        <option>Ministry of food</option>
+        <option>Ministry</option>
+      </select>
+      <select>
+        <option>Department</option>
+        <option>SIDBI</option>
+        <option>CGTSME</option>
+
+      </select>
+    </div>
+    <div class="card">
+      <h3>SCHEME 1</h3>
+      <p>We provide funding</p>
+    </div>
+    <div class="card">
+      <h3>SCHEME 1</h3>
+      <p>We provide funding</p>
+    </div>
+    <div class="card">
+      <h3>SCHEME 1</h3>
+      <p>We provide funding</p>
+    </div>
+    <div class="card">
+      <h3>SCHEME 1</h3>
+      <p>We provide funding</p>
+    </div>
+    <div class="card">
+      <h3>SCHEME 1</h3>
+      <p>We provide funding</p>
+    </div>
+    <div class="card">
+      <h3>SCHEME 1</h3>
+      <p>We provide funding</p>
+    </div>
+  </div>
+  <div *ngIf='matches("dept")'>
+    hello
+>>>>>>> d982a8d61adeac4498f84c21a395eb0244603b29
   </div>
 </div>

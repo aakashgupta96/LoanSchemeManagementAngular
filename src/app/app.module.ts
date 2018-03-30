@@ -24,9 +24,10 @@ import {LoaderComponent} from "./components/loader/loader.component";
 import {NoConnectionComponent} from "./components/no-connection/no-connection.component";
 import {HomeComponent} from "./components/home/home.component";
 import {LaunchComponent} from "./components/launch/launch.component";
-import {HeaderComponent} from "./components/header/header.component";
+import {HeaderComponent, UpdateProfileDialog} from "./components/header/header.component";
 import {FooterComponent} from "./components/footer/footer.component";
 import {LoanComponent} from "./components/loan/loan.component";
+import {CustomButtonComponent} from "./components/custom-button/custom-button.component";
 
 @NgModule({
   declarations: [
@@ -43,7 +44,9 @@ import {LoanComponent} from "./components/loan/loan.component";
     LaunchComponent,
     HeaderComponent,
     FooterComponent,
-    LoanComponent
+    LoanComponent,
+    UpdateProfileDialog,
+    CustomButtonComponent
   ],
   imports: [
     BrowserModule,
@@ -53,6 +56,9 @@ import {LoanComponent} from "./components/loan/loan.component";
     FormsModule,
     HttpClientModule,
     AppRoutingModule
+  ],
+  entryComponents: [
+    UpdateProfileDialog
   ],
   providers: [
     AuthenticationService,
