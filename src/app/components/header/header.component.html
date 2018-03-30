@@ -1,7 +1,7 @@
 <div class="navbar">
-  <img class="top_img" src="../assets/icons/logo.png">
-  <div style="display: flex; padding: 0 16px; align-items: center; justify-content: space-between">
-    <img src="../assets/icons/start.png" style="height: 46px;">
+  <img *ngIf="showing" class="top_img" src="../assets/icons/logo.png">
+  <div style="display: flex; padding: 0 20px; box-sizing: border-box; align-items: center; justify-content: space-between">
+    <img src="../assets/icons/start.png" style="height: 48px; padding: 12px 0;">
     <div *ngIf="!loggedIn" style="display: flex;">
       <input type="text" class="right" placeholder="Enter Email ID.." [(ngModel)]="email">
       <input type="password" class="right" placeholder="Enter Password.." [(ngModel)]="password">

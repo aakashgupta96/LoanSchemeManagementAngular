@@ -1,10 +1,11 @@
-import {Component, OnInit, ViewContainerRef} from '@angular/core';
+import {Component, HostListener, Inject, OnInit, ViewContainerRef} from '@angular/core';
 import {NotificationBuilder} from "../../misc/notification/notification.builder";
 import {LoanAppNotificationType} from "../../models/loan-app-notification.model";
 import {NotificationService} from "../../services/notificaton.service";
 import {UserService} from "../../services/user.service";
 import {User} from "../../models/user.model";
 import {MatDialog, MatDialogConfig, MatDialogRef} from "@angular/material";
+import {DOCUMENT} from "@angular/common";
 
 @Component({
   selector: 'app-header',
@@ -20,8 +21,10 @@ export class HeaderComponent implements OnInit {
 
   updateProfileDialogRef: MatDialogRef<any>;
 
+  showing: boolean = true;
+
   constructor(private notificationService: NotificationService, private userService: UserService,
-              public dialog: MatDialog, public viewContainerRef: ViewContainerRef) {
+              public dialog: MatDialog, public viewContainerRef: ViewContainerRef, @Inject(DOCUMENT) private document: Document) {
   }
 
   ngOnInit() {
@@ -109,6 +112,12 @@ export class HeaderComponent implements OnInit {
 
   openCompanyDialog() {
 
+  }
+
+  @HostListener("window:scroll", [])
+  onWindowScroll() {
+    const offset = this.document.documentElement.scrollTop || this.document.body.scrollTop || 0;
+    this.showing = offset < 50;
   }
 }
 
