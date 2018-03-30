@@ -101,8 +101,9 @@ export class HeaderComponent implements OnInit {
     this.updateProfileDialogRef.componentInstance.user = this.user;
     this.updateProfileDialogRef.afterClosed().subscribe(user => {
       this.updateProfileDialogRef = null;
-      console.log(user);
-      this.user = user;
+      if (user) {
+        this.user = user;
+      }
     });
   }
 

@@ -1,13 +1,13 @@
 <div id="edit-form">
-  <div style="height: 230px; width: 230px;">
-    <img [src]='image ? image : "../assets/default-user.jpeg"' style="height: 100%; width: 100%; object-fit: cover;" alt="Project Tumbnail">
-  </div>
-  <label class="custom-file-upload">
+  <label class="custom-file-upload" style="cursor: pointer;">
     <input type="file" name="thumbnail" placeholder="Thumbnail" accept="image/*"
-           (change)="handleInputChange($event)">
-    Upload Thumbnail
+           (change)="handleInputChange($event)" style="display: none;">
+    <div style="height: 230px; width: 230px;">
+      <img [src]='image ? image : "../assets/default-user.jpeg"' style="height: 100%; width: 100%; object-fit: cover;" alt="Project Tumbnail">
+      <p style="text-align: center;">Upload Display Picture</p>
+    </div>
   </label>
-  <mat-input-container dividerColor="accent">
+  <mat-input-container dividerColor="accent" style="padding-top: 30px;">
     <input matInput type="text" placeholder="Name" name="name" [(ngModel)]="name">
   </mat-input-container>
   <mat-input-container dividerColor="accent">

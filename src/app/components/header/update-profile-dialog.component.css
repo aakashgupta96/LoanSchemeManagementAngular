@@ -2,11 +2,12 @@
   height: 60%;
   background-color: white;
   margin: auto;
-  width: 25%;
   padding: 24px;
   flex-grow: 1;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   max-width: 400px;
+  width: 100%;
+  box-sizing: border-box;
 }
