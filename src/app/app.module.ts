@@ -25,7 +25,7 @@ import {NoConnectionComponent} from "./components/no-connection/no-connection.co
 import {HomeComponent} from "./components/home/home.component";
 import {LaunchComponent} from "./components/launch/launch.component";
 import {HeaderComponent} from "./components/header/header.component";
-
+import {FooterComponent} from "./components/footer/footer.component";
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +39,8 @@ import {HeaderComponent} from "./components/header/header.component";
     NoConnectionComponent,
     HomeComponent,
     LaunchComponent,
-    HeaderComponent
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
