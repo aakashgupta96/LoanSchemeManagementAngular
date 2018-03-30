@@ -7,7 +7,7 @@ import {Component, OnInit} from '@angular/core';
 })
 export class LoanComponent {
 
-  display: string;
+  display = "schemes";
 
   constructor() {
   }

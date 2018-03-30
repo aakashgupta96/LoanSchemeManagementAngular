@@ -10,8 +10,12 @@
   list-style: outside none none;
   color: white;
   text-align: center;
+  cursor: pointer;
 }
-#content{
+li:hover{
+  background-color: #7C4DFF;
+}
+.content{
   flex :0.8;
 }
 li{
@@ -23,13 +27,21 @@ li{
 }
 #drop select{
   margin-right: 50px;
+  margin-top: 10px;
 }
 .card{
-  height: 100px;
+  height: 150px;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   padding: 2px 16px;
   border-radius: 5px;
   text-align: center;
-  padding-top: 20px;
+  padding-top: 5px;
   margin-top: 50px;
+}
+
+.active {
+  font-size: 24px;
+  background-color: #7C4DFF;
+  border-left: #f14d32;
+  border-left-width: 50px;
 }

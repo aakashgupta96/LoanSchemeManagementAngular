@@ -1,11 +1,11 @@
 <div id="loan">
 		<ul id="nav">
-			<li (click)='setString("schemes")'>Schemes</li>
-			<li (click)='setString("dept")'>Departments</li>
-			<li>Ministries</li>
+			<li (click)='setString("schemes")' [class.active]='matches("schemes")'>Schemes</li>
+			<li (click)='setString("dept")' [class.active]='matches("dept")'>Departments</li>
+			<li (click)='setString("ministry")' [class.active]='matches("ministry")'>Ministries</li>
 		</ul>
 
-		<div id="content" *ngIf='matches("schemes")'>
+		<div class="content" *ngIf='matches("schemes")'>
 			<div id="drop">
 				<select>
 					<option>Ministry</option>
@@ -44,9 +44,49 @@
         <h3>SCHEME 1</h3>
         <p>We provide funding</p>
       </div>
-
 		</div>
-		<div *ngIf='matches("dept")'>
-			hello
-		</div>
+		<div class="content" *ngIf='matches("dept")'>
+      <div class="card">
+        <h3>DEPARTMENT OF INDUSTRIAL POLICY AND PROMOTION</h3>
+        <p>We provide funding</p>
+        <h4>NODAL OFFICER : MR. RK</h4>
+        <p>CONTACT: XXXXXXXXXX</p>
+      </div>
+      <div class="card">
+        <h3>NATIONAL SKILL DEVELOPMENT CORPORATION</h3>
+        <p>We provide funding</p>
+        <h4>NODAL OFFICER : MR. RK</h4>
+        <p>CONTACT: XXXXXXXXXX</p>
+      </div>
+      <div class="card">
+        <h3>SMALL INDUSTRIAL BANK OF INDIA</h3>
+        <p>We provide funding</p>
+        <h4>NODAL OFFICER : MR. RK</h4>
+        <p>CONTACT: XXXXXXXXXX</p>
+      </div>
+      <div class="card">
+        <h3>MUDRA</h3>
+        <p>We provide funding</p>
+        <h4>NODAL OFFICER : MR. RK</h4>
+        <p>CONTACT: XXXXXXXXXX</p>
+      </div>
+		</div >
+  <div class="content" *ngIf='matches("ministry")' >
+    <div class="card">
+      <h3>MINISTRY OF PUBLIC SECTOR</h3>
+      <p>We provide funding</p>
+    </div>
+    <div class="card">
+      <h3>MINISTRY OF SKILL DEVELOPMENT & ENTREPRENEURSHIP</h3>
+      <p>We provide funding</p>
+    </div>
+    <div class="card">
+      <h3>MINISTRY OF NEW AND RENEWABLE ENERGY RESOURCES</h3>
+      <p>We provide funding</p>
+    </div>
+    <div class="card">
+      <h3>MINISTRY OF PETROL</h3>
+      <p>We provide funding</p>
+    </div>
+  </div>
 </div>
