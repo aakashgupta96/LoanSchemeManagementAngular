@@ -4,18 +4,20 @@
     <div class="col-sm-8">
       <img src="../assets/icons/start.png">
     </div>
-    <div class="col-sm-4" *ngIf="!loggedIn">
+    <div *ngIf="!loggedIn">
       <input type="text" class="right" placeholder="Enter Email ID.." [(ngModel)]="email">
       <input type="password" class="right" placeholder="Enter Password.." [(ngModel)]="password">
       <button class="right" (click)="login()">Login</button>
     </div>
-    <div class="col-sm-4" *ngIf="loggedIn">
+    <div *ngIf="loggedIn">
       <ul>
-        <li><a class="active" href="#news">Add Company</a></li>
-        <li><a href="#contact">Update Profile</a></li>
-        <li><img style="width:40px; padding-top: 5px;" src="../assets/icons/info.png"></li>
+        <li>Add Company</li>
+        <li>Update Profile</li>
         <li (click)="logout()">Logout</li>
       </ul>
+      <div id="user-details" *ngIf="user">
+        <img src="">
+      </div>
     </div>
   </div>
 </div>

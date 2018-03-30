@@ -1,32 +1,35 @@
 #loan {
   display: flex;
-  border-bottom: 1px solid rgb(221, 221, 221);
 }
-#nav{
+
+#nav {
   background-color: #38358d;
-  flex :0.2;
-  padding-left: 0px;
-  margin-bottom: 0px;
+  flex: 0.2;
   list-style: outside none none;
   color: white;
   text-align: center;
 }
-#content{
-  flex :0.8;
+
+#content {
+  flex: 0.8;
 }
-li{
+
+li {
   line-height: 100px;
 }
-#drop{
+
+#drop {
   display: flex;
   margin-left: 300px;
 }
-#drop select{
+
+#drop select {
   margin-right: 50px;
 }
-.card{
+
+.card {
   height: 100px;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   padding: 2px 16px;
   border-radius: 5px;
   text-align: center;
