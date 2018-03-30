@@ -27,6 +27,7 @@ import {LaunchComponent} from "./components/launch/launch.component";
 import {HeaderComponent} from "./components/header/header.component";
 import {FooterComponent} from "./components/footer/footer.component";
 import {LoanComponent} from "./components/loan/loan.component";
+import {ContentComponent} from "./components/content/content.component";
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import {LoanComponent} from "./components/loan/loan.component";
     LaunchComponent,
     HeaderComponent,
     FooterComponent,
-    LoanComponent
+    LoanComponent,
+    ContentComponent
   ],
   imports: [
     BrowserModule,
