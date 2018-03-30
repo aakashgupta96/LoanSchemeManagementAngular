@@ -10,17 +10,12 @@
   text-align: center;
   cursor: pointer;
 }
-<<<<<<< HEAD
 li:hover{
   background-color: #7C4DFF;
 }
 .content{
   flex :0.8;
-=======
 
-#content {
-  flex: 0.8;
->>>>>>> d982a8d61adeac4498f84c21a395eb0244603b29
 }
 
 li {
@@ -36,16 +31,10 @@ li {
   margin-right: 50px;
   margin-top: 10px;
 }
-<<<<<<< HEAD
-.card{
-  height: 150px;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-=======
 
 .card {
   height: 100px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
->>>>>>> d982a8d61adeac4498f84c21a395eb0244603b29
   padding: 2px 16px;
   border-radius: 5px;
   text-align: center;
