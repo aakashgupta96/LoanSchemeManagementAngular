@@ -3,6 +3,7 @@ import {NotificationBuilder} from "../../misc/notification/notification.builder"
 import {LoanAppNotificationType} from "../../models/loan-app-notification.model";
 import {NotificationService} from "../../services/notificaton.service";
 import {UserService} from "../../services/user.service";
+import {User} from "../../models/user.model";
 
 @Component({
   selector: 'app-header',
@@ -14,6 +15,9 @@ export class HeaderComponent implements OnInit {
   email: string;
   password: string;
   loggedIn: boolean;
+  user: User;
+  name: string;
+
 
   constructor(private notificationService: NotificationService, private userService: UserService) {
   }
@@ -21,6 +25,9 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.userService.loginStatusStream.subscribe(loginStatus => {
       this.loggedIn = loginStatus;
+      if (this.loggedIn) {
+        this.user = this.userService.getUser();
+      }
     });
   }
 
@@ -79,5 +86,9 @@ export class HeaderComponent implements OnInit {
   isEmailValid(email) {
     let re = /\S+@\S+\.\S+/;
     return re.test(email);
+  }
+
+  updateUserDetails() {
+
   }
 }

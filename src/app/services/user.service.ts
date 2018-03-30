@@ -15,17 +15,12 @@ export class UserService {
   loginStatusStream: Observable<boolean>;
 
   constructor(private authenticationService: AuthenticationService,
-              private networkService: NetworkService,
-              private notificationService: NotificationService) {
+              private networkService: NetworkService) {
     this.loginStatusStream = this.authenticationService.loginStatusSubject.asObservable();
   }
 
   getUser(): User {
     return this.authenticationService.getUser();
-  }
-
-  isLoggedIn(): boolean {
-    return this.authenticationService.isLoggedIn();
   }
 
   login(email: string, password: string): Promise<LoginResponse> {
