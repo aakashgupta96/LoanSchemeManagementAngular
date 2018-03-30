@@ -12,7 +12,8 @@ import {
   MatSlideToggleModule,
   MatTabsModule,
   MatTooltipModule,
-  MatFormFieldModule
+  MatFormFieldModule,
+  MatCardModule
 } from '@angular/material';
 
 @NgModule({
@@ -29,7 +30,8 @@ import {
     MatInputModule,
     MatDialogModule,
     MatSlideToggleModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatCardModule
   ],
 
   exports: [
@@ -44,7 +46,8 @@ import {
     MatInputModule,
     MatDialogModule,
     MatSlideToggleModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatCardModule
   ],
 
   declarations: [],

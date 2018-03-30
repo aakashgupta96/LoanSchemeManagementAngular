@@ -1,0 +1,31 @@
+<div id="loan">
+		<ul id="nav">
+			<li (click)='setString("schemes")'>Schemes</li>
+			<li (click)='setString("dept")'>Departments</li>
+			<li>Ministries</li>
+		</ul>
+	
+		<div id="content" *ngIf='matches("schemes")'> 
+			<div id="drop">
+				<select>
+					<option>Ministry</option>
+					<option>Ministry of commerce</option>
+					<option>Ministry of food</option>
+					<option>Ministry</option>
+				</select>
+				<select>
+					<option>Department</option>
+					<option>SIDBI</option>
+					<option>CGTSME</option>
+					
+				</select>
+			</div>
+			<div class="card">
+				<h3>SCHEME 1</h3>
+				<p>We provide funding</p>
+			</div>
+		</div>
+		<div *ngIf='matches("dept")'>
+			hello
+		</div>
+</div>
