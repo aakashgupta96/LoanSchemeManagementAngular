@@ -26,6 +26,8 @@ import {HomeComponent} from "./components/home/home.component";
 import {LaunchComponent} from "./components/launch/launch.component";
 import {HeaderComponent} from "./components/header/header.component";
 import {FooterComponent} from "./components/footer/footer.component";
+import {LoanComponent} from "./components/loan/loan.component";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +42,8 @@ import {FooterComponent} from "./components/footer/footer.component";
     HomeComponent,
     LaunchComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    LoanComponent
   ],
   imports: [
     BrowserModule,
