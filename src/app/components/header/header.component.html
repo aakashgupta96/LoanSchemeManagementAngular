@@ -1,5 +1,71 @@
-header
-<div *ngIf="!loggedIn">
+
+
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+ <!-- <div class="navbar">
+ <img class="top_img" src="../assets/icons/logo.png">
+
+<div class="row">
+<div class="col-sm-8">
+ <img  src="../assets/icons/start.png">
+</div>    
+<div class="col-sm-4">
+<input type="text" class="right" placeholder="Enter Email ID..">
+<input type="text" class="right" placeholder="Enter Password.." >
+<button class="right" >Login</button>
+</div>
+</div>
+
+</div> -->
+
+
+ <div class="navbar" *ngIf="!lggedIn">
+ <img class="top_img" src="../assets/icons/logo.png">
+
+<div class="row">
+<div class="col-sm-8">
+ <img  src="../assets/icons/start.png">
+</div>    
+<div class="col-sm-4">
+<ul>
+  <ul>
+  
+  <li><a class="active"href="#news">Add Company</a></li>
+
+  <li><a href="#contact">Update Profile</a></li>
+  <li><img style="width:40px; padding-top: 5px;" src="../assets/icons/info.png"></li>
+
+ 
+</ul>
+    
+</ul>
+</div>
+</div>
+
+</div> 
+
+<!-- NOT LOGGED IN -->
+<div class="navbar" *ngIf="loggedIn" >
+ <img class="top_img" src="../assets/icons/logo.png">
+
+<div class="row">
+<div class="col-sm-8">
+ <img  src="../assets/icons/start.png">
+</div>    
+<div class="col-sm-4">
+<input type="text" class="right" placeholder="Enter Email ID..">
+<input type="text" class="right" placeholder="Enter Password.." >
+<button class="right" >Login</button>
+</div>
+</div>
+
+</div>
+
+<!-- <div *ngIf="!loggedIn">
   <mat-input-container dividerColor="accent">
     <input matInput type="text" placeholder="Email" name="email" [(ngModel)]="email">
   </mat-input-container>
@@ -12,4 +78,11 @@ header
 </div>
 
 <button (click)="logout()" *ngIf="loggedIn">Logout</button>
-/header
+ -->
+	
+<!--  <div class="container">
+ <p>ajgs</p>
+<p>ajgs</p><p>ajgs</p><p>ajgs</p><p>ajgs</p><p>ajgs</p><p>ajgs</p><p>ajgs</p><p>ajgs</p><p>ajgs</p><p>ajgs</p><p>ajgs</p><p>ajgs</p><p>ajgs</p><p>ajgs</p><p>ajgs</p><p>ajgs</p><p>ajgs</p><p>ajgs</p><p>ajgs</p><p>ajgs</p><p>ajgs</p><p>ajgs</p><p>ajgs</p><p>ajgs</p><p>ajgs</p><p>ajgs</p><p>ajgs</p><p>ajgs</p><p>ajgs</p><p>ajgs</p><p>ajgs</p><p>ajgs</p><p>ajgs</p><p>ajgs</p><p>ajgs</p><p>ajgs</p><p>ajgs</p><p>ajgs</p><p>ajgs</p><p>ajgs</p><p>ajgs</p><p>ajgs</p><p>ajgs</p>
+</div> -->
+
+

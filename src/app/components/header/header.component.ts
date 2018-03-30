@@ -14,6 +14,7 @@ export class HeaderComponent implements OnInit {
   email: string;
   password: string;
   loggedIn: boolean;
+  log:boolean;
 
   constructor(private notificationService: NotificationService, private userService: UserService) {
   }
