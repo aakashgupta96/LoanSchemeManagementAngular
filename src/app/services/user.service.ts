@@ -7,7 +7,6 @@ import {CallBuilder} from '../network/call.builder';
 import {Observable} from 'rxjs';
 import {NetworkService} from './network.service';
 import {AuthenticationService} from './authentication.service';
-import {NotificationService} from "./notificaton.service";
 
 @Injectable()
 export class UserService {
@@ -39,5 +38,18 @@ export class UserService {
       this.authenticationService.logout();
       return res;
     });
+  }
+
+  updateProfile(name: string, phone: string, address: string, image: string): Promise<any> {
+    let body = {
+      name,
+      address,
+      phone,
+      image
+    };
+    return new CallBuilder(this.networkService, RequestMethod.Post, URLS.EDIT_USER_DETAILS).body(body)
+      .buildAuthenticatedCall().execute().then(response => {
+        return response;
+      });
   }
 }

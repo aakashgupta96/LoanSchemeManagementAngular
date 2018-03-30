@@ -1,22 +1,20 @@
 <div class="navbar">
   <img class="top_img" src="../assets/icons/logo.png">
-  <div class="row">
-    <div class="col-sm-8">
-      <img src="../assets/icons/start.png">
-    </div>
-    <div *ngIf="!loggedIn">
+  <div style="display: flex; padding: 0 16px; align-items: center; justify-content: space-between">
+    <img src="../assets/icons/start.png" style="height: 46px;">
+    <div *ngIf="!loggedIn" style="display: flex;">
       <input type="text" class="right" placeholder="Enter Email ID.." [(ngModel)]="email">
       <input type="password" class="right" placeholder="Enter Password.." [(ngModel)]="password">
       <button class="right" (click)="login()">Login</button>
     </div>
-    <div *ngIf="loggedIn">
-      <ul>
-        <li>Add Company</li>
-        <li>Update Profile</li>
+    <div *ngIf="loggedIn" style="display: flex;">
+      <ul style="display: flex; align-items: center;">
+        <li (click)="openCompanyDialog()">Add Company</li>
+        <li (click)="openUpdateDialog()">Update Profile</li>
         <li (click)="logout()">Logout</li>
       </ul>
       <div id="user-details" *ngIf="user">
-        <img src="">
+        <img [src]='user.image ? user.image : "../assets/default-user.jpeg"'>
       </div>
     </div>
   </div>

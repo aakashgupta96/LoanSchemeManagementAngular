@@ -1,9 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewContainerRef} from '@angular/core';
 import {NotificationBuilder} from "../../misc/notification/notification.builder";
 import {LoanAppNotificationType} from "../../models/loan-app-notification.model";
 import {NotificationService} from "../../services/notificaton.service";
 import {UserService} from "../../services/user.service";
 import {User} from "../../models/user.model";
+import {MatDialog, MatDialogConfig, MatDialogRef} from "@angular/material";
 
 @Component({
   selector: 'app-header',
@@ -16,10 +17,11 @@ export class HeaderComponent implements OnInit {
   password: string;
   loggedIn: boolean;
   user: User;
-  name: string;
 
+  updateProfileDialogRef: MatDialogRef<any>;
 
-  constructor(private notificationService: NotificationService, private userService: UserService) {
+  constructor(private notificationService: NotificationService, private userService: UserService,
+              public dialog: MatDialog, public viewContainerRef: ViewContainerRef) {
   }
 
   ngOnInit() {
@@ -88,7 +90,76 @@ export class HeaderComponent implements OnInit {
     return re.test(email);
   }
 
+  openUpdateDialog() {
+    let config = new MatDialogConfig();
+    config.viewContainerRef = this.viewContainerRef;
+
+    this.updateProfileDialogRef = this.dialog.open(UpdateProfileDialog, config);
+    this.updateProfileDialogRef.componentInstance.user = this.user;
+    this.updateProfileDialogRef.afterClosed().subscribe(user => {
+      this.updateProfileDialogRef = null;
+      console.log(user);
+      this.user = user;
+    });
+  }
+
   updateUserDetails() {
 
+  }
+
+  openCompanyDialog() {
+
+  }
+}
+
+
+@Component({
+  selector: 'update-profile-dialog',
+  templateUrl: './update-profile-dialog.component.html',
+  styleUrls: ['./update-profile-dialog.component.css']
+})
+export class UpdateProfileDialog {
+
+  name: string;
+  image: string;
+  address: string;
+  phone: string;
+
+  constructor(public dialogRef: MatDialogRef<any>, public viewContainerRef: ViewContainerRef,
+              private notificationService: NotificationService, private userService: UserService) {
+  }
+
+  handleInputChange(e) {
+    let file = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
+    let pattern = /image-*/;
+    let reader = new FileReader();
+    if (file.type && !file.type.match(pattern)) {
+      alert('invalid format');
+      return;
+    }
+    reader.onload = this._handleReaderLoaded.bind(this);
+    reader.readAsDataURL(file);
+  }
+
+  _handleReaderLoaded(e) {
+    let reader = e.target;
+    this.image = reader.result;
+  }
+
+  updateProfile() {
+    this.userService.updateProfile(this.name, this.phone, this.address, this.image).then(res => {
+      let newNotification = new NotificationBuilder()
+        .title('Success')
+        .message('Profile Successfully Updated!')
+        .showClose(true)
+        .timeout(5000)
+        .type(LoanAppNotificationType.SUCCESS)
+        .build();
+
+      this.notificationService.showNotification(newNotification);
+      let config = new MatDialogConfig();
+      config.viewContainerRef = this.viewContainerRef;
+      this.dialogRef.close(res.user);
+    })
   }
 }
