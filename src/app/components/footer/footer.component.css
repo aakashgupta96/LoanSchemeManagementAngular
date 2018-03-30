@@ -1,62 +1,67 @@
-footer{
-	background-color: #284177;
-	display: flex;
-	justify-content: space-between;
-	color:white;
-	padding: 4% 2%;
-}
-.ministry, .links{
-	display:flex;
-	justify-content: space-between;
-}
-.links{
-	    align-items: center;
-    height: 100%;
-    padding: 15px;
-}
-a{
-	text-decoration: none;
-	padding:5px;
-	color: white
-}
-.icons{
-	border:1px solid white;
-	color:white;
-	padding: 11px;
+footer {
+  background-color: #284177;
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  padding: 4% 2%;
 }
 
-.write{
-	/*margin-top: 25%;	*/
-	border: 1px solid white;
-	vertical-align: middle;
+.ministry, .links {
+  display: flex;
+  justify-content: space-between;
 }
-.connect{
-	    font-family: ProximaNova-Semibold;
-    font-size: 11px;
-    color: rgba(255,255,255,0.4);
-    margin-bottom: 3px;
-   
+
+.links {
+  align-items: center;
+  height: 100%;
+  padding: 15px;
 }
-.copyright{
-	background: #262889;
-	width: 100%;
-	padding:1%;
+
+a {
+  text-decoration: none;
+  padding: 5px;
+  color: white
 }
+
+.icons {
+  border: 1px solid white;
+  color: white;
+  padding: 11px;
+}
+
+.write {
+  border: 1px solid white;
+  vertical-align: middle;
+}
+
+.connect {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 3px;
+
+}
+
+.copyright {
+  background: #262889;
+  width: 100%;
+  padding: 1%;
+}
+
 ul#footer-menu li {
-    display:inline;
-    padding:0px 10px 5px 5px;
-    
+  display: inline;
+  padding: 0px 10px 5px 5px;
+
 }
-ul#footer-menu li a{
-	color:#cfcfcf;
-        font-family: ProximaNova-Semibold;
-        font-size: 15px;
+
+ul#footer-menu li a {
+  color: #cfcfcf;
+  font-size: 15px;
 }
-.writer{
-	text-align: right;
+
+.writer {
+  text-align: right;
 }
-.footer{
-	position:absolute;
-   bottom:0;
-   width:100%;
+
+.footer {
+  width: 100%;
 }

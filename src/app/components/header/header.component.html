@@ -1,15 +1,21 @@
-<!-- header
-<div *ngIf="!loggedIn">
-  <mat-input-container dividerColor="accent">
-    <input matInput type="text" placeholder="Email" name="email" [(ngModel)]="email">
-  </mat-input-container>
-
-  <mat-input-container dividerColor="accent">
-    <input matInput type="text" placeholder="Password" name="password" [(ngModel)]="password">
-  </mat-input-container>
-
-  <button (click)="login()">Login</button>
+<div class="navbar">
+  <img class="top_img" src="../assets/icons/logo.png">
+  <div class="row">
+    <div class="col-sm-8">
+      <img src="../assets/icons/start.png">
+    </div>
+    <div class="col-sm-4" *ngIf="!loggedIn">
+      <input type="text" class="right" placeholder="Enter Email ID.." [(ngModel)]="email">
+      <input type="password" class="right" placeholder="Enter Password.." [(ngModel)]="password">
+      <button class="right" (click)="login()">Login</button>
+    </div>
+    <div class="col-sm-4" *ngIf="loggedIn">
+      <ul>
+        <li><a class="active" href="#news">Add Company</a></li>
+        <li><a href="#contact">Update Profile</a></li>
+        <li><img style="width:40px; padding-top: 5px;" src="../assets/icons/info.png"></li>
+        <li (click)="logout()">Logout</li>
+      </ul>
+    </div>
+  </div>
 </div>
-
-<button (click)="logout()" *ngIf="loggedIn">Logout</button>
-/header -->

@@ -7,17 +7,16 @@ import {Component, OnInit} from '@angular/core';
 })
 export class LoanComponent {
 
-	display :string;
-	constructor(){
-	
-	}
+  display: string;
 
-	matches(abe: string) {
-		return this.display == abe;
-	}
+  constructor() {
+  }
 
-	setString(ab: string){
-		console.log('set', ab)
-		this.display = ab;
-	}
+  matches(str: string) {
+    return this.display == str;
+  }
+
+  setString(str: string) {
+    this.display = str;
+  }
 }
