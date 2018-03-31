@@ -5,7 +5,7 @@
     <div *ngIf="!loggedIn" style="display: flex;">
       <input type="text" class="right" placeholder="Enter Email ID.." [(ngModel)]="email">
       <input type="password" class="right" placeholder="Enter Password.." [(ngModel)]="password">
-      <button class="right" (click)="login()">Login</button>
+      <button class="right" (click)="login()">Login/Signup</button>
     </div>
     <div *ngIf="loggedIn" style="display: flex;">
       <ul style="display: flex; align-items: center;">
