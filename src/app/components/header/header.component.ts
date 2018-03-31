@@ -110,6 +110,19 @@ export class HeaderComponent implements OnInit {
   openCompanyDialog() {
 
   }
+
+  openDoubtDialog() {
+    let config = new MatDialogConfig();
+    config.viewContainerRef = this.viewContainerRef;
+
+    this.updateProfileDialogRef = this.dialog.open(AskDoubtDialog, config);
+    this.updateProfileDialogRef.componentInstance.user = this.user;
+    this.updateProfileDialogRef.afterClosed().subscribe(user => {
+      this.updateProfileDialogRef = null;
+      console.log(user);
+      this.user = user;
+    });
+  }
 }
 
 
@@ -162,4 +175,22 @@ export class UpdateProfileDialog {
       this.dialogRef.close(res.user);
     })
   }
+}
+
+@Component({
+  selector: 'ask-doubt-dialog',
+  templateUrl: './ask-doubt-dialog.component.html',
+  styleUrls: ['./ask-doubt-dialog.component.css']
+})
+export class AskDoubtDialog {
+
+  name: string;
+  image: string;
+  address: string;
+  phone: string;
+
+  constructor(public dialogRef: MatDialogRef<any>, public viewContainerRef: ViewContainerRef,
+              private notificationService: NotificationService, private userService: UserService) {
+  }
+
 }
