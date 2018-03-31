@@ -24,7 +24,7 @@ import {LoaderComponent} from "./components/loader/loader.component";
 import {NoConnectionComponent} from "./components/no-connection/no-connection.component";
 import {HomeComponent} from "./components/home/home.component";
 import {LaunchComponent} from "./components/launch/launch.component";
-import {HeaderComponent, UpdateProfileDialog} from "./components/header/header.component";
+import {AddCompanyDialog, HeaderComponent, UpdateProfileDialog} from "./components/header/header.component";
 import {FooterComponent} from "./components/footer/footer.component";
 import {LoanComponent} from "./components/loan/loan.component";
 import {CustomButtonComponent} from "./components/custom-button/custom-button.component";
@@ -46,7 +46,8 @@ import {CustomButtonComponent} from "./components/custom-button/custom-button.co
     FooterComponent,
     LoanComponent,
     UpdateProfileDialog,
-    CustomButtonComponent
+    CustomButtonComponent,
+    AddCompanyDialog
   ],
   imports: [
     BrowserModule,
@@ -58,7 +59,8 @@ import {CustomButtonComponent} from "./components/custom-button/custom-button.co
     AppRoutingModule
   ],
   entryComponents: [
-    UpdateProfileDialog
+    UpdateProfileDialog,
+    AddCompanyDialog
   ],
   providers: [
     AuthenticationService,

@@ -6,4 +6,5 @@ export class User {
   image: string;
   name: string;
   address: string;
+  company_added: boolean;
 }

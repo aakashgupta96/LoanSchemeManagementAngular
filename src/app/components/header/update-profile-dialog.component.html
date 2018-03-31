@@ -7,18 +7,18 @@
       <p style="text-align: center;">Upload Display Picture</p>
     </div>
   </label>
-  <mat-input-container dividerColor="accent" style="padding-top: 30px;">
+  <mat-input-container dividerColor="accent" style="padding-top: 30px; margin: 0 auto;">
     <input matInput type="text" placeholder="Name" name="name" [(ngModel)]="name">
   </mat-input-container>
-  <mat-input-container dividerColor="accent">
+  <mat-input-container dividerColor="accent" style="margin: 0 auto;">
     <input matInput type="text" placeholder="phone" name="branch" [(ngModel)]="phone">
   </mat-input-container>
-  <mat-input-container dividerColor="accent">
-    <textarea matInput placeholder="Leave a comment" name="address" [(ngModel)]="address"></textarea>
+  <mat-input-container dividerColor="accent" style="margin: 0 auto;">
+    <textarea matInput placeholder="Address" name="address" [(ngModel)]="address"></textarea>
   </mat-input-container>
 
   <app-custom-button
-    [disabled]="!(name && image && address && phone)"
+    [disabled]="!(name || image || address || phone)"
     [text]="'Submit'"
     [action]="updateProfile.bind(this)">
   </app-custom-button>

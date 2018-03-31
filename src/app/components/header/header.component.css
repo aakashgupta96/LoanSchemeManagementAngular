@@ -1,9 +1,13 @@
 .navbar {
   overflow: hidden;
-  background-color: #ddd;
   position: fixed;
   top: 0;
   width: 100%;
+  background: #fff;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+  z-index: 2;
 }
 
 .navbar a {
@@ -44,7 +48,6 @@ input[type=text], select, textarea {
 ul {
   list-style-type: none;
   overflow: hidden;
-  background-color: #ddd;
 }
 
 button {
@@ -58,6 +61,8 @@ button {
 #user-details img {;
   height: 48px;
   border-radius: 50%;
+  width: 48px;
+  -o-object-fit: cover;
   object-fit: cover;
 }
 
@@ -67,6 +72,7 @@ li {
   align-items: center;
   padding: 12px;
   box-sizing: border-box;
+  color: #ef693d;
 }
 
 li:hover {

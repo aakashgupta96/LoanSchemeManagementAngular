@@ -3,19 +3,22 @@
 }
 
 #nav {
-  background-color: #38358d;
-  flex: 0.2;
+  background: #3e39ce url(https://www.startupindiahub.org.in/etc/designs/invest-india/investindialibs/images/home-blue-side-bg.png) no-repeat 0 0;
+  width: 30%;
   list-style: outside none none;
   color: white;
   text-align: center;
   cursor: pointer;
 }
-li:hover{
+
+li:hover {
   background-color: #7C4DFF;
 }
-.content{
-  flex :0.8;
 
+.content {
+  width: 70%;
+  padding: 24px;
+  box-sizing: border-box;
 }
 
 li {
@@ -35,16 +38,33 @@ li {
 .card {
   height: 100px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  padding: 2px 16px;
   border-radius: 5px;
   text-align: center;
-  padding-top: 5px;
+  padding: 5px 16px 2px;
   margin-top: 50px;
 }
 
 .active {
-  font-size: 24px;
-  background-color: #7C4DFF;
-  border-left: #f14d32;
-  border-left-width: 50px;
+  position: relative;
+  z-index: 1;
+}
+
+.active:before {
+  content: '';
+  position: absolute;
+  width: 6px;
+  height: 100%;
+  background-color: #f05a22;
+  left: 0;
+}
+
+.active:after {
+  content: '';
+  right: -11px;
+  top: 50%;
+  transform: translateY(-50%);
+  position: absolute;
+  background: url(https://www.startupindiahub.org.in/etc/designs/invest-india/investindialibs/images/right-tri-arrow.png) no-repeat 0 0;
+  width: 11px;
+  height: 21px;
 }

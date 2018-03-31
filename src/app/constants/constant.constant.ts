@@ -5,6 +5,7 @@ export const URLS: any = {
   LOGIN: "users/login",
   LOGOUT: "users/logout",
   EDIT_USER_DETAILS: "users/edit",
+  ADD_COMPANY: "users/add_company"
 };
 
 export const KEYS: any = {
