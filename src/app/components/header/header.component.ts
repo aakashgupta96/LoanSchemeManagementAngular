@@ -1,12 +1,12 @@
 import {Component, HostListener, Inject, OnInit, ViewContainerRef} from '@angular/core';
-import {NotificationBuilder} from "../../misc/notification/notification.builder";
-import {LoanAppNotificationType} from "../../models/loan-app-notification.model";
-import {NotificationService} from "../../services/notificaton.service";
-import {UserService} from "../../services/user.service";
-import {User} from "../../models/user.model";
-import {MatDialog, MatDialogConfig, MatDialogRef} from "@angular/material";
-import {DOCUMENT} from "@angular/common";
-import {isNullOrUndefined} from "util";
+import {NotificationBuilder} from '../../misc/notification/notification.builder';
+import {LoanAppNotificationType} from '../../models/loan-app-notification.model';
+import {NotificationService} from '../../services/notificaton.service';
+import {UserService} from '../../services/user.service';
+import {User} from '../../models/user.model';
+import {MatDialog, MatDialogConfig, MatDialogRef} from '@angular/material';
+import {DOCUMENT} from '@angular/common';
+import {isNullOrUndefined} from 'util';
 
 @Component({
   selector: 'app-header',
@@ -22,7 +22,7 @@ export class HeaderComponent implements OnInit {
 
   updateProfileDialogRef: MatDialogRef<any>;
 
-  showing: boolean = true;
+  showing = true;
 
   constructor(private notificationService: NotificationService, private userService: UserService,
               public dialog: MatDialog, public viewContainerRef: ViewContainerRef, @Inject(DOCUMENT) private document: Document) {
@@ -40,7 +40,7 @@ export class HeaderComponent implements OnInit {
   login() {
     if (this.email && this.isEmailValid(this.email) && this.password && this.password.length > 0) {
       this.userService.login(this.email, this.password).then(res => {
-        let newNotification = new NotificationBuilder()
+        const newNotification = new NotificationBuilder()
           .title('Logged In')
           .message('Welcome to Loan App!')
           .showClose(true)
@@ -53,7 +53,7 @@ export class HeaderComponent implements OnInit {
         this.password = null;
       });
     } else if (!this.email || !this.isEmailValid(this.email)) {
-      let newNotification = new NotificationBuilder()
+      const newNotification = new NotificationBuilder()
         .title('Invalid Email')
         .message('Please enter a valid email!')
         .showClose(true)
@@ -63,7 +63,7 @@ export class HeaderComponent implements OnInit {
 
       this.notificationService.showNotification(newNotification);
     } else if (!this.password || this.password.length == 0) {
-      let newNotification = new NotificationBuilder()
+      const newNotification = new NotificationBuilder()
         .title('Invalid Password')
         .message('Please enter a valid password!')
         .showClose(true)
@@ -77,7 +77,7 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.userService.logout().then(res => {
-      let newNotification = new NotificationBuilder()
+      const newNotification = new NotificationBuilder()
         .title('Logged Out')
         .message('You are successfully logged out!')
         .showClose(true)
@@ -90,12 +90,12 @@ export class HeaderComponent implements OnInit {
   }
 
   isEmailValid(email) {
-    let re = /\S+@\S+\.\S+/;
+    const re = /\S+@\S+\.\S+/;
     return re.test(email);
   }
 
   openUpdateDialog() {
-    let config = new MatDialogConfig();
+    const config = new MatDialogConfig();
     config.viewContainerRef = this.viewContainerRef;
 
     this.updateProfileDialogRef = this.dialog.open(UpdateProfileDialog, config);
@@ -109,7 +109,7 @@ export class HeaderComponent implements OnInit {
   }
 
   openCompanyDialog() {
-    let config = new MatDialogConfig();
+    const config = new MatDialogConfig();
     config.viewContainerRef = this.viewContainerRef;
 
     this.updateProfileDialogRef = this.dialog.open(AddCompanyDialog, config);
@@ -122,14 +122,14 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  @HostListener("window:scroll", [])
+  @HostListener('window:scroll', [])
   onWindowScroll() {
     const offset = this.document.documentElement.scrollTop || this.document.body.scrollTop || 0;
     this.showing = offset < 50;
   }
 
   openDoubtDialog() {
-    let config = new MatDialogConfig();
+    const config = new MatDialogConfig();
     config.viewContainerRef = this.viewContainerRef;
 
     this.updateProfileDialogRef = this.dialog.open(AskDoubtDialog, config);
@@ -160,9 +160,9 @@ export class UpdateProfileDialog {
   }
 
   handleInputChange(e) {
-    let file = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
-    let pattern = /image-*/;
-    let reader = new FileReader();
+    const file = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
+    const pattern = /image-*/;
+    const reader = new FileReader();
     if (file.type && !file.type.match(pattern)) {
       alert('invalid format');
       return;
@@ -172,13 +172,13 @@ export class UpdateProfileDialog {
   }
 
   _handleReaderLoaded(e) {
-    let reader = e.target;
+    const reader = e.target;
     this.image = reader.result;
   }
 
   updateProfile() {
     if (this.phone && this.phone.length < 10) {
-      let newNotification = new NotificationBuilder()
+      const newNotification = new NotificationBuilder()
         .title('Phone Number not valid')
         .message('Please enter a correct number!')
         .showClose(true)
@@ -190,7 +190,7 @@ export class UpdateProfileDialog {
       return;
     }
     this.userService.updateProfile(this.name, this.phone, this.address, this.image).then(res => {
-      let newNotification = new NotificationBuilder()
+      const newNotification = new NotificationBuilder()
         .title('Success')
         .message('Profile Successfully Updated!')
         .showClose(true)
@@ -199,10 +199,10 @@ export class UpdateProfileDialog {
         .build();
 
       this.notificationService.showNotification(newNotification);
-      let config = new MatDialogConfig();
+      const config = new MatDialogConfig();
       config.viewContainerRef = this.viewContainerRef;
       this.dialogRef.close(res.user);
-    })
+    });
   }
 }
 
@@ -246,7 +246,7 @@ export class AddCompanyDialog {
   image: string;
   profits: string;
 
-  count: number = 1;
+  count = 1;
   count_arr: number[] = [1, 2, 3, 4];
 
   constructor(public dialogRef: MatDialogRef<any>, public viewContainerRef: ViewContainerRef,
@@ -254,9 +254,9 @@ export class AddCompanyDialog {
   }
 
   handleInputChange(e) {
-    let file = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
-    let pattern = /image-*/;
-    let reader = new FileReader();
+    const file = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
+    const pattern = /image-*/;
+    const reader = new FileReader();
     if (file.type && !file.type.match(pattern)) {
       alert('invalid format');
       return;
@@ -266,7 +266,7 @@ export class AddCompanyDialog {
   }
 
   _handleReaderLoaded(e) {
-    let reader = e.target;
+    const reader = e.target;
     this.image = reader.result;
   }
 
@@ -301,10 +301,10 @@ export class AddCompanyDialog {
 
   addCompany() {
     this.userService.addCompany(this.name, this.description, this.incorporation_date, this.incorporation_number,
-      this.location, this.phone, this.type+"", this.team_strength, this.growth_rate, this.pan, this.website, this.net_worth,
+      this.location, this.phone, this.type + '', this.team_strength, this.growth_rate, this.pan, this.website, this.net_worth,
       this.image, this.profits).then(res => {
 
-      let newNotification = new NotificationBuilder()
+      const newNotification = new NotificationBuilder()
         .title('Success')
         .message('Company Successfully Added!')
         .showClose(true)
@@ -313,7 +313,7 @@ export class AddCompanyDialog {
         .build();
 
       this.notificationService.showNotification(newNotification);
-      let config = new MatDialogConfig();
+      const config = new MatDialogConfig();
       config.viewContainerRef = this.viewContainerRef;
       this.dialogRef.close(true);
     });
