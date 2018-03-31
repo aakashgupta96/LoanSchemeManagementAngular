@@ -25,7 +25,6 @@ export class LoanComponent implements OnInit {
       this.schemes = res.schemes;
       this.ministries = res.ministries;
       this.departments = res.departments;
-      console.log(res)
     })
   }
 
