@@ -1,10 +1,12 @@
-import {Component, OnInit, ViewContainerRef} from '@angular/core';
+import {Component, HostListener, Inject, OnInit, ViewContainerRef} from '@angular/core';
 import {NotificationBuilder} from "../../misc/notification/notification.builder";
 import {LoanAppNotificationType} from "../../models/loan-app-notification.model";
 import {NotificationService} from "../../services/notificaton.service";
 import {UserService} from "../../services/user.service";
 import {User} from "../../models/user.model";
 import {MatDialog, MatDialogConfig, MatDialogRef} from "@angular/material";
+import {DOCUMENT} from "@angular/common";
+import {isNullOrUndefined} from "util";
 
 @Component({
   selector: 'app-header',
@@ -20,8 +22,10 @@ export class HeaderComponent implements OnInit {
 
   updateProfileDialogRef: MatDialogRef<any>;
 
+  showing: boolean = true;
+
   constructor(private notificationService: NotificationService, private userService: UserService,
-              public dialog: MatDialog, public viewContainerRef: ViewContainerRef) {
+              public dialog: MatDialog, public viewContainerRef: ViewContainerRef, @Inject(DOCUMENT) private document: Document) {
   }
 
   ngOnInit() {
@@ -98,17 +102,30 @@ export class HeaderComponent implements OnInit {
     this.updateProfileDialogRef.componentInstance.user = this.user;
     this.updateProfileDialogRef.afterClosed().subscribe(user => {
       this.updateProfileDialogRef = null;
-      console.log(user);
-      this.user = user;
+      if (user) {
+        this.user = user;
+      }
     });
   }
 
-  updateUserDetails() {
+  openCompanyDialog() {
+    let config = new MatDialogConfig();
+    config.viewContainerRef = this.viewContainerRef;
 
+    this.updateProfileDialogRef = this.dialog.open(AddCompanyDialog, config);
+    this.updateProfileDialogRef.componentInstance.user = this.user;
+    this.updateProfileDialogRef.afterClosed().subscribe(result => {
+      this.updateProfileDialogRef = null;
+      if (result) {
+        this.user.company_added = true;
+      }
+    });
   }
 
-  openCompanyDialog() {
-
+  @HostListener("window:scroll", [])
+  onWindowScroll() {
+    const offset = this.document.documentElement.scrollTop || this.document.body.scrollTop || 0;
+    this.showing = offset < 50;
   }
 
   openDoubtDialog() {
@@ -160,6 +177,18 @@ export class UpdateProfileDialog {
   }
 
   updateProfile() {
+    if (this.phone && this.phone.length < 10) {
+      let newNotification = new NotificationBuilder()
+        .title('Phone Number not valid')
+        .message('Please enter a correct number!')
+        .showClose(true)
+        .timeout(5000)
+        .type(LoanAppNotificationType.ALERT)
+        .build();
+
+      this.notificationService.showNotification(newNotification);
+      return;
+    }
     this.userService.updateProfile(this.name, this.phone, this.address, this.image).then(res => {
       let newNotification = new NotificationBuilder()
         .title('Success')
@@ -189,8 +218,104 @@ export class AskDoubtDialog {
   address: string;
   phone: string;
 
+
+  constructor(public dialogRef: MatDialogRef<any>, public viewContainerRef: ViewContainerRef,
+              private notificationService: NotificationService, private userService: UserService) {
+  }
+}
+
+@Component({
+  selector: 'add-company-dialog',
+  templateUrl: './add-company-dialog.component.html',
+  styleUrls: ['./add-company-dialog.component.css']
+})
+export class AddCompanyDialog {
+
+  name: string;
+  description: string;
+  incorporation_date: string;
+  incorporation_number: string;
+  location: string;
+  phone: string;
+  type: number;
+  team_strength: string;
+  growth_rate: string;
+  pan: string;
+  website: string;
+  net_worth: string;
+  image: string;
+  profits: string;
+
+  count: number = 1;
+  count_arr: number[] = [1, 2, 3, 4];
+
   constructor(public dialogRef: MatDialogRef<any>, public viewContainerRef: ViewContainerRef,
               private notificationService: NotificationService, private userService: UserService) {
   }
 
+  handleInputChange(e) {
+    let file = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
+    let pattern = /image-*/;
+    let reader = new FileReader();
+    if (file.type && !file.type.match(pattern)) {
+      alert('invalid format');
+      return;
+    }
+    reader.onload = this._handleReaderLoaded.bind(this);
+    reader.readAsDataURL(file);
+  }
+
+  _handleReaderLoaded(e) {
+    let reader = e.target;
+    this.image = reader.result;
+  }
+
+  checkDisabled(): boolean {
+    switch (this.count) {
+      case 1:
+        return !(this.name && this.description);
+      case 2:
+        return !(this.phone && this.location && this.pan);
+      case 3:
+        return !(this.incorporation_date && this.incorporation_number && !isNullOrUndefined(this.type));
+      case 4:
+        return !(this.growth_rate && this.net_worth);
+      default:
+        return false;
+    }
+  }
+
+  proceed() {
+    if (this.count == 4) {
+      this.addCompany();
+    } else {
+      this.count = this.count + 1;
+    }
+  }
+
+  setNum(num: number) {
+    if (this.count > num) {
+      this.count = num;
+    }
+  }
+
+  addCompany() {
+    this.userService.addCompany(this.name, this.description, this.incorporation_date, this.incorporation_number,
+      this.location, this.phone, this.type+"", this.team_strength, this.growth_rate, this.pan, this.website, this.net_worth,
+      this.image, this.profits).then(res => {
+
+      let newNotification = new NotificationBuilder()
+        .title('Success')
+        .message('Company Successfully Added!')
+        .showClose(true)
+        .timeout(5000)
+        .type(LoanAppNotificationType.SUCCESS)
+        .build();
+
+      this.notificationService.showNotification(newNotification);
+      let config = new MatDialogConfig();
+      config.viewContainerRef = this.viewContainerRef;
+      this.dialogRef.close(true);
+    });
+  }
 }

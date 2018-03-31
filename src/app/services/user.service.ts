@@ -52,4 +52,40 @@ export class UserService {
         return response;
       });
   }
+
+  addCompany(name: string,
+             description: string,
+             incorporation_date: string,
+             incorporation_number: string,
+             location: string,
+             phone: string,
+             type: string,
+             team_strength: string,
+             growth_rate: string,
+             pan: string,
+             website: string,
+             net_worth: string,
+             image: string,
+             profits: string): Promise<any> {
+    let body = {
+      name,
+      description,
+      incorporation_date,
+      incorporation_number,
+      location,
+      phone,
+      type,
+      team_strength,
+      growth_rate,
+      pan,
+      website,
+      net_worth,
+      image,
+      profits
+    };
+    return new CallBuilder(this.networkService, RequestMethod.Post, URLS.ADD_COMPANY).body(body)
+      .buildAuthenticatedCall().execute().then(response => {
+        return response;
+      });
+  }
 }

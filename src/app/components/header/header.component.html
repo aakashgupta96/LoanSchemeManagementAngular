@@ -1,15 +1,15 @@
 <div class="navbar">
-  <img class="top_img" src="../assets/icons/logo.png">
-  <div style="display: flex; padding: 0 16px; align-items: center; justify-content: space-between">
-    <img src="../assets/icons/start.png" style="height: 46px;">
+  <img *ngIf="showing" class="top_img" src="../assets/icons/logo.png">
+  <div style="display: flex; padding: 0 20px; box-sizing: border-box; align-items: center; justify-content: space-between">
+    <img src="../assets/icons/start.png" style="height: 48px; padding: 12px 0;">
     <div *ngIf="!loggedIn" style="display: flex;">
       <input type="text" class="right" placeholder="Enter Email ID.." [(ngModel)]="email">
       <input type="password" class="right" placeholder="Enter Password.." [(ngModel)]="password">
-      <button class="right" (click)="login()">Login</button>
+      <button class="right" (click)="login()">Login/Signup</button>
     </div>
     <div *ngIf="loggedIn" style="display: flex;">
       <ul style="display: flex; align-items: center;">
-        <li (click)="openCompanyDialog()">Add Company</li>
+        <li *ngIf="!user.company_added" (click)="openCompanyDialog()">Add Company</li>
         <li (click)="openUpdateDialog()">Update Profile</li>
         <li (click)="openDoubtDialog()">Ask Doubt</li>
         <li (click)="logout()">Logout</li>

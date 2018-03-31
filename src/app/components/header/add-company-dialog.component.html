@@ -1,0 +1,79 @@
+<div id="form-head">
+  Add Company
+</div>
+<div id="form-container">
+  <div id="main-form">
+    <div class="form-card" *ngIf="count == 1">
+      <mat-input-container dividerColor="accent">
+        <input matInput type="text" placeholder="Name of the Company" required="true" name="name" [(ngModel)]="name">
+      </mat-input-container>
+      <mat-input-container dividerColor="accent">
+        <textarea matInput type="text" required="true" placeholder="Tell us about your company..." name="description"
+                  [(ngModel)]="description"></textarea>
+      </mat-input-container>
+      <label class="custom-file-upload" style="cursor: pointer;">
+        <input type="file" name="thumbnail" placeholder="Thumbnail" accept="image/*"
+               (change)="handleInputChange($event)" style="display: none;">
+        <div
+          style="height: 200px; width: 200px; display: flex; border: 1px dotted black; border-radius: 12px; overflow: hidden;">
+          <img [src]='image ? image : "../assets/plus.png"' style="height: 100%; width: 100%; object-fit: cover;"
+               alt="Company Logo">
+        </div>
+      </label>
+    </div>
+    <div class="form-card" *ngIf="count == 2">
+      <mat-input-container dividerColor="accent">
+        <input matInput type="text" placeholder="Contact Number" required="true" name="phone" [(ngModel)]="phone">
+      </mat-input-container>
+      <mat-input-container dividerColor="accent">
+        <input matInput type="text" placeholder="Company located at ..." required="true" name="location"
+               [(ngModel)]="location">
+      </mat-input-container>
+      <mat-input-container dividerColor="accent">
+        <input matInput type="text" placeholder="Website" name="website" [(ngModel)]="website">
+      </mat-input-container>
+      <mat-input-container dividerColor="accent">
+        <input matInput type="text" placeholder="Company PAN no." required="true" name="pan" [(ngModel)]="pan">
+      </mat-input-container>
+    </div>
+    <div class="form-card" *ngIf="count == 3">
+      <mat-input-container dividerColor="accent">
+        <input matInput type="text" placeholder="Incorporation Date" required="true" name="incorporation_date" [(ngModel)]="incorporation_date">
+      </mat-input-container>
+      <mat-input-container dividerColor="accent">
+        <input matInput type="text" placeholder="Incorporation Number" required="true" name="incorporation_number" [(ngModel)]="incorporation_number">
+      </mat-input-container>
+      <div id="select-type">
+        <div (click)="type = 0" [class.active]="type == 0">
+          <img src="../assets/product.png">
+        </div>
+        <div (click)="type = 1" [class.active]="type == 1">
+          <img src="../assets/service.png">
+        </div>
+      </div>
+    </div>
+    <div class="form-card" *ngIf="count == 4">
+      <mat-input-container dividerColor="accent">
+        <input matInput type="text" placeholder="Growth Rate" required="true" name="growth_rate" [(ngModel)]="growth_rate">
+      </mat-input-container>
+      <mat-input-container dividerColor="accent">
+        <input matInput type="text" placeholder="Your team strength" name="team_strength" [(ngModel)]="team_strength">
+      </mat-input-container>
+      <mat-input-container dividerColor="accent">
+        <input matInput type="text" placeholder="Profits(if any)" name="profits" [(ngModel)]="profits">
+      </mat-input-container>
+      <mat-input-container dividerColor="accent">
+        <input matInput type="text" placeholder="Net Worth" required="true" name="net_worth" [(ngModel)]="net_worth">
+      </mat-input-container>
+    </div>
+  </div>
+  <div>
+    <div id="levels">
+      <div class="level" *ngFor="let num of count_arr" (click)="setNum(num)"
+           [ngClass]="{done: count > num, current: count == num}">{{num}}
+      </div>
+    </div>
+    <app-custom-button [action]="proceed.bind(this)" [disabled]="checkDisabled()"
+                       [text]="count == 4 ? 'Submit' : 'Continue'"></app-custom-button>
+  </div>
+</div>
