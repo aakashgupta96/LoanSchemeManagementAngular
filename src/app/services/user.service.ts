@@ -88,4 +88,11 @@ export class UserService {
         return response;
       });
   }
+
+  load_data(): Promise<any> {
+    return new CallBuilder(this.networkService, RequestMethod.Get, URLS.LOAD_DATA)
+      .build().execute().then(response => {
+        return response;
+      });
+  }
 }

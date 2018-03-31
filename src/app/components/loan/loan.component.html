@@ -1,92 +1,50 @@
 <div id="loan">
-		<ul id="nav">
-			<li (click)='setString("schemes")' [class.active]='matches("schemes")'>Schemes</li>
-			<li (click)='setString("dept")' [class.active]='matches("dept")'>Departments</li>
-			<li (click)='setString("ministry")' [class.active]='matches("ministry")'>Ministries</li>
-		</ul>
+  <ul id="nav">
+    <li (click)='setString("schemes")' [class.active]='matches("schemes")'>Schemes</li>
+    <li (click)='setString("dept")' [class.active]='matches("dept")'>Departments</li>
+    <li (click)='setString("ministry")' [class.active]='matches("ministry")'>Ministries</li>
+  </ul>
 
-		<div class="content" *ngIf='matches("schemes")'>
-			<div id="drop">
-				<select>
-					<option>Ministry</option>
-					<option>Ministry of commerce</option>
-					<option>Ministry of food</option>
-					<option>Ministry</option>
-				</select>
-				<select>
-					<option>Department</option>
-					<option>SIDBI</option>
-					<option>CGTSME</option>
+  <div class="content" *ngIf='matches("schemes")'>
+    <div id="drop">
+      <mat-form-field>
+        <mat-select placeholder="Select Ministry" [(ngModel)]="selectedMinistry">
+          <mat-option *ngFor="let ministry of ministries" [value]="ministry.id">
+            {{ ministry.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field style="margin-left: 16px;">
+        <mat-select placeholder="Select Department" [(ngModel)]="selectedDept">
+          <mat-option *ngFor="let dept of showingDepts()" [value]="dept.id">
+            {{ dept.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="card" *ngFor="let scheme of showingSchemes()">
+      <h3>{{scheme.name}}</h3>
+      <p>{{scheme.guidelines}}</p>
+      <p>{{scheme.ticket_size}}</p>
+      <p>{{scheme.interest_rate}}</p>
+    </div>
+  </div>
 
-				</select>
-			</div>
-			<div class="card">
-				<h3>SCHEME 1</h3>
-				<p>We provide funding</p>
-			</div>
-      <div class="card">
-        <h3>SCHEME 1</h3>
-        <p>We provide funding</p>
-      </div>
-      <div class="card">
-        <h3>SCHEME 1</h3>
-        <p>We provide funding</p>
-      </div>
-      <div class="card">
-        <h3>SCHEME 1</h3>
-        <p>We provide funding</p>
-      </div>
-      <div class="card">
-        <h3>SCHEME 1</h3>
-        <p>We provide funding</p>
-      </div>
-      <div class="card">
-        <h3>SCHEME 1</h3>
-        <p>We provide funding</p>
-      </div>
-		</div>
-		<div class="content" *ngIf='matches("dept")'>
-      <div class="card">
-        <h3>DEPARTMENT OF INDUSTRIAL POLICY AND PROMOTION</h3>
-        <p>We provide funding</p>
-        <h4>NODAL OFFICER : MR. RK</h4>
-        <p>CONTACT: XXXXXXXXXX</p>
-      </div>
-      <div class="card">
-        <h3>NATIONAL SKILL DEVELOPMENT CORPORATION</h3>
-        <p>We provide funding</p>
-        <h4>NODAL OFFICER : MR. RK</h4>
-        <p>CONTACT: XXXXXXXXXX</p>
-      </div>
-      <div class="card">
-        <h3>SMALL INDUSTRIAL BANK OF INDIA</h3>
-        <p>We provide funding</p>
-        <h4>NODAL OFFICER : MR. RK</h4>
-        <p>CONTACT: XXXXXXXXXX</p>
-      </div>
-      <div class="card">
-        <h3>MUDRA</h3>
-        <p>We provide funding</p>
-        <h4>NODAL OFFICER : MR. RK</h4>
-        <p>CONTACT: XXXXXXXXXX</p>
-      </div>
-		</div >
-  <div class="content" *ngIf='matches("ministry")' >
-    <div class="card">
-      <h3>MINISTRY OF PUBLIC SECTOR</h3>
+
+  <div class="content" *ngIf='matches("dept")'>
+    <div class="card" *ngFor="let dept of departments">
+      <h3>{{dept.name}}</h3>
       <p>We provide funding</p>
+      <h4>NODAL OFFICER : MR. RK</h4>
+      <p>CONTACT: XXXXXXXXXX</p>
     </div>
-    <div class="card">
-      <h3>MINISTRY OF SKILL DEVELOPMENT & ENTREPRENEURSHIP</h3>
-      <p>We provide funding</p>
-    </div>
-    <div class="card">
-      <h3>MINISTRY OF NEW AND RENEWABLE ENERGY RESOURCES</h3>
-      <p>We provide funding</p>
-    </div>
-    <div class="card">
-      <h3>MINISTRY OF PETROL</h3>
-      <p>We provide funding</p>
+  </div>
+
+
+  <div class="content" *ngIf='matches("ministry")'>
+    <div class="card" *ngFor="let ministry of ministries">
+      <h3>{{ministry.name}}</h3>
+      <p>{{ministry.description}}</p>
     </div>
   </div>
 </div>
