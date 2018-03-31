@@ -7,7 +7,7 @@ export const URLS: any = {
   EDIT_USER_DETAILS: "users/edit",
   ADD_COMPANY: "users/add_company",
   LOAD_DATA: "users/load_data",
-  ASK_QUERY: "users/apply_for_loan",
+  ASK_QUERY: "users/ask_query",
   APPLY_FOR_LOAN: "users/apply_for_loan"
 };
 

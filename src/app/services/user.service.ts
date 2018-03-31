@@ -95,4 +95,11 @@ export class UserService {
         return response;
       });
   }
+
+  ask_query(description: string): Promise<any> {
+    return new CallBuilder(this.networkService, RequestMethod.Post, URLS.ASK_QUERY)
+      .buildAuthenticatedCall().execute().then(response => {
+        return response;
+      });
+  }
 }

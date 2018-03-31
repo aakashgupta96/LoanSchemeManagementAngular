@@ -9,7 +9,7 @@
     </div>
     <div *ngIf="loggedIn" style="display: flex;">
       <ul style="display: flex; align-items: center;">
-        <li *ngIf="!user.company_added" (click)="openCompanyDialog()">Add Company</li>
+        <li *ngIf="user && !user.company_added" (click)="openCompanyDialog()">Add Company</li>
         <li (click)="openUpdateDialog()">Update Profile</li>
         <li (click)="openDoubtDialog()">Ask Doubt</li>
         <li (click)="logout()">Logout</li>

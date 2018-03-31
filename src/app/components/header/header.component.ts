@@ -213,14 +213,28 @@ export class UpdateProfileDialog {
 })
 export class AskDoubtDialog {
 
-  name: string;
-  image: string;
-  address: string;
-  phone: string;
+  description: string;
 
 
   constructor(public dialogRef: MatDialogRef<any>, public viewContainerRef: ViewContainerRef,
               private notificationService: NotificationService, private userService: UserService) {
+  }
+
+  postDoubt() {
+    this.userService.ask_query(this.description).then(res => {
+      const newNotification = new NotificationBuilder()
+        .title('Success')
+        .message('Doubt Successfully Posted!')
+        .showClose(true)
+        .timeout(5000)
+        .type(LoanAppNotificationType.SUCCESS)
+        .build();
+
+      this.notificationService.showNotification(newNotification);
+      const config = new MatDialogConfig();
+      config.viewContainerRef = this.viewContainerRef;
+      this.dialogRef.close(true);
+    });
   }
 }
 
